@@ -1,0 +1,24 @@
+ul{
+    list-style: none;
+    display: block;
+}
+
+
+.inputSearch{
+    position: relative;
+}
+
+button{
+    position: absolute;
+    border: none;
+    background-color: black;
+    border-radius: 3px;
+    color: aliceblue;
+    height: 34px;
+}
+
+
+.search{
+    display: flex;
+}
+

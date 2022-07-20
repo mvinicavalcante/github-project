@@ -5,6 +5,10 @@
     padding: 10px 0px;
 }
 
+button{
+    cursor: pointer;
+}
+
 ul{
     list-style: none;
     display: block;
@@ -38,6 +42,7 @@ a{
 .inputSearch{
     width: 250px;
     height: 35px;
+    padding: 0px 15px;
 }
 
 .buscar-btn{
@@ -65,7 +70,7 @@ a{
     position: absolute;
     text-align: center;
     align-items: center;
-    left: -200px;
+    left: -153px;
     border-radius: 3px;
     padding: 10px 20px;
 }

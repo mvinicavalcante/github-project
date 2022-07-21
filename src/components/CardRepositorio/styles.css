@@ -1,5 +1,6 @@
 .item-repositorio{
-    background-color: gray;
+    color: aliceblue;
+    background-color: black;
     border-radius: 10px;
     padding: 10px 10px;
     text-align: center;
@@ -7,12 +8,24 @@
     margin-right: 30px;
 }
 
+.card{
+    display: block;
+}
+
 li:hover{
+    cursor: pointer;
     transition: 1s;
-    color: aliceblue;
-    background-color: black;
+    background-color: gray;
+    color: black;
+    
 }
 
 h1, h2, h3:hover{
     cursor: pointer;
+}
+
+@media screen and (max-width: 810px) {
+    .card{
+        margin: 0 auto;
+    }
 }

@@ -10,9 +10,11 @@ ul{
     display: block;
 }
 
+
 a{
-    color: black;
+    color: antiquewhite
 }
+
 
 .options{
     display: flex;

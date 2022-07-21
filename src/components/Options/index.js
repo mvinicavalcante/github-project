@@ -10,8 +10,8 @@ import CardRepositorio from "../../components/CardRepositorio"
 const Options = () => {
 
     const [busca, setBusca] = useState('')
+    const [commitsRecentes, setCommitsRecentes] = useState(false)
     const [filtros, setFiltros] = useState(false)
-    const [repositories, setRepositories] = useState([])
 
     function toggleFiltersList() {
         if(filtros === false){
@@ -39,9 +39,9 @@ const Options = () => {
     }
 
     return(
-        <>
+        <div className="card-options">
             <div className="order-by">   
-                <p>Mostrar por :  <a href="/">ordem alfabética </a> • <a href="#">commit mais recente</a></p>
+                <p>Mostrar por :  <a href="/">ordem alfabética</a> • <a href="#" onClick={(e) => setCommitsRecentes(!e)}> commit mais recente</a></p>
             </div>
             
             <div className="options">
@@ -62,7 +62,7 @@ const Options = () => {
                     <button className="buscar-btn" onClick={search}>Buscar</button>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

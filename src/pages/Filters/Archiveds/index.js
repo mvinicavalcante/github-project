@@ -14,30 +14,30 @@ const Archiveds = () => {
     const [filtros, setFiltros] = useState(false)
     const [repositories, setRepositories] = useState([])
     const [commitsRecentes, setCommitsRecentes] = useState(false)
+    const [arrayRecentes, setArrayRecentes] = useState([])
     
     useEffect(() => {
         try{
             api.get('/repos').then(({data}) => {
                 setRepositories(data)
             });
+            api.get('/repos?sort=updated_at').then(({data}) => {
+                setArrayRecentes(data)
+            });          
         }
-
         catch(error){
             console.log(error)
         }
 
-    }, ['']);
+    }, []);
 
-    function isMostrarArquivados(){window.location.href = '/archiveds'}
+    const isMostrarArquivados = () => window.location.href = '/archiveds'
 
-    function isMostrarEstrelas(){window.location.href = '/stars' }
+    const isMostrarEstrelas = () => window.location.href = '/stars' 
+    
+    const isMostrarIssues = () => window.location.href = '/issues'
 
-    function isMostrarIssues(){window.location.href = '/issues'}
-
-    function isMostrarArquivados(){window.location.href = '/archiveds'}
-
-
-    function toggleFiltersList() {
+    const toggleFiltersList = () => {
         if(filtros === false){
             setFiltros(true)
         }
@@ -46,18 +46,18 @@ const Archiveds = () => {
         }
     }
 
-
-
     return(
         <div className="archiveds">
+            
             <div className="order-by">   
-                <p>Mostrar por :  <a href="/">ordem alfabética</a> • <a href="#" onClick={ e => {setCommitsRecentes(!e)}}> commit mais recente</a></p>
+                <p>Mostrar por :  <label onClick={e => {setCommitsRecentes(!e)}}>ordem alfabética</label> • <label  onClick={e => {setCommitsRecentes(e)}}> commit mais recente</label></p>
             </div>
             
-            <div className="options">
-                <div className="filters">
+            <div className="options" key="options">
+                <div className="filters" key="filters">
                     <button className="filtrar-btn" onClick={toggleFiltersList}>Filtrar <FaCaretDown /></button>
                     {filtros &&
+                    <>
                         <div className="filters-list" key='filters'>
                             <ul className="filters-ul">
                                 <li className="filters-li" onClick={isMostrarArquivados} key='filter1'>Arquivados</li>
@@ -65,6 +65,17 @@ const Archiveds = () => {
                                 <li className="filters-li" onClick={isMostrarIssues} key='filter3'>Com issues</li>
                             </ul>
                         </div>
+
+                        <div className="filters-list-mobile" key="filters-mobile">
+                            <ul className="filters-ul-mobile" key="filters-mobile-ul">
+                                <li className="filters-li-mobile" onClick={isMostrarArquivados} key='filter1-mobile'>Arquivados</li>
+                                <li className="filters-li-mobile" onClick={isMostrarEstrelas} key='filter2-mobile'>Com estrelas</li>
+                                <li className="filters-li-mobile" onClick={isMostrarIssues} key='filter3-mobile'>Com issues</li>
+                                <li className="filters-li-mobile close" onClick={() => {setFiltros(false)}} key='filter3'>FECHAR</li>
+                            </ul>
+                        </div>
+                    </>
+                        
                     }
                 </div>
                 <div className="search">
@@ -73,21 +84,47 @@ const Archiveds = () => {
                 </div>
             </div>
 
+
             <ul>
-                {repositories.filter((data) => {
-                    if (busca == ""){
+                {commitsRecentes ?
+                    arrayRecentes.filter((data) => {
+                        if (busca === ""){
+                            return data
+                        } 
+                        else if(data.name.toLowerCase().includes(busca.toLowerCase())){
+                            return data
+                        }
+                        return this
+                    }).map((data) => {
+                        if(data.archived === true){
+                            return(
+                                <CardRepositorio 
+                                    name={data.name}
+                                    desc={data.description}
+                                    index={data.id}
+                                    lang={data.language}
+                                />
+                            )
+                        }
+                    })
+
+                :
+                
+                repositories.filter((data) => {
+                    if (busca === ""){
                         return data
                     } 
                     else if(data.name.toLowerCase().includes(busca.toLowerCase())){
                         return data
                     }
-                }).map((data, index) => {
+                    return this
+                }).map((data) => {
                     if(data.archived === true){
                         return(
                             <CardRepositorio 
                                 name={data.name}
                                 desc={data.description}
-                                key={index}
+                                index={data.id}
                                 lang={data.language}
                             />
                         )

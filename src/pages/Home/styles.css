@@ -1,8 +1,10 @@
+
 .home{
     align-items: center;
     margin-left: 0;
     margin: 0 auto;
     padding: 10px 0px;
+    overflow-x: hidden;
 }
 
 ul{
@@ -11,8 +13,12 @@ ul{
 }
 
 
-a{
-    color: antiquewhite
+label{
+    color: antiquewhite;
+    background-color: black;
+    padding: 2px 5px;
+    border-radius: 3px;
+    cursor: pointer;
 }
 
 
@@ -48,7 +54,6 @@ a{
     background-color: black;
     border-radius: 3px;
     color: aliceblue;
-    height: 35px;
     right: 0;
 }
 
@@ -67,10 +72,43 @@ a{
     position: absolute;
     text-align: center;
     align-items: center;
-    left: -200px;
+    left: -250px;
     border-radius: 3px;
     padding: 10px 20px;
+    border: 2px solid aliceblue;
 }
+
+.filters-list-mobile{
+    display: none;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    background-color: black;
+    color: aliceblue;
+    text-align: center;
+    align-items: center;
+    border-radius: 3px;
+    padding: 10px 20px;
+    top: 0;
+    z-index: 1000;
+    right: 0;
+}
+
+.filters-li-mobile{
+    margin-top: 50px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.close{
+    font-weight: bold;
+    background-color: aliceblue;
+    color: black;
+    border: 1px solid aliceblue;
+    text-align: center;
+}
+
+
 
 .filters-ul{
     align-items: center;
@@ -88,6 +126,53 @@ a{
 }
 
 
-@media screen and (max-width: 1000px) {
-    
+
+@media screen and (max-width: 850px) {
+
+    .search{
+        padding: 0px 10px;
+    }
+
+    .filtrar-btn{
+        padding: 10px 10px;
+        flex-direction: column;
+        margin-right: 0px;
+        float: right;
+        position: absolute;
+        top: 50px;
+        margin: 0 auto;
+    }
+
+    .filters-list{
+        display: none;
+    }
+
+    .filters-list-mobile{
+        display: block;
+    }
+
+    label{
+        font-size: 10px;
+    }
+
+
+    @media screen and (max-width: 376px) {
+        .filters{
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+        }
+
+        .filtrar-btn{
+            height: 35px;
+            margin-right: 0px;
+        }
+
+        .search{
+            width: 60px;
+        }    
+        
+    }
+
 }
+

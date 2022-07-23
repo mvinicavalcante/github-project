@@ -87,7 +87,14 @@ const Home = () => {
 
             <ul>
                 {commitsRecentes ?
-                    arrayRecentes.map((data, index) => {
+                    arrayRecentes.filter((data) => {
+                        if (busca === ""){
+                            return data
+                        } else if(data.name.toLowerCase().includes(busca.toLowerCase())){
+                            return data
+                        }
+                        return this
+                    }).map((data, index) => {
                         return(
                             <CardRepositorio 
                                 index={index} 

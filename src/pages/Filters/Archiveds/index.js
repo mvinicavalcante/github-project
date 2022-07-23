@@ -29,7 +29,7 @@ const Archiveds = () => {
             console.log(error)
         }
 
-    }, []);
+    }, ['']);
 
     const isMostrarArquivados = () => window.location.href = '/archiveds'
 
